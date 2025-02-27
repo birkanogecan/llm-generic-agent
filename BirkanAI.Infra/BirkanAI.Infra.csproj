@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business\BirkanAI.Domain.csproj" />
+    <ProjectReference Include="..\BirkanAI.Domain\BirkanAI.Domain.csproj" />
   </ItemGroup>
 
 </Project>
