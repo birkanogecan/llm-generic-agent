@@ -1,0 +1,37 @@
+﻿@page "/"
+@using BirkanAI.Domain
+@using BirkanAI.Infra.AIClient
+@inject AIClientGateway AIClientGateway
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<input @bind="inputText" placeholder="Enter text" @onkeyup="HandleKeyPress" />
+<button @onclick="OnButtonClick">Submit</button>
+
+<p>@result</p>
+
+Welcome to your new app.
+
+@code {
+    private string result;
+    private string inputText;
+
+    private async Task OnButtonClick()
+    {
+        
+        result = await AIClientGateway.CallModelAsync(inputText);
+        StateHasChanged();
+    }
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            result = "düşünüyor...";
+            StateHasChanged();
+            await OnButtonClick();
+        }
+    }
+}
